@@ -1,12 +1,12 @@
 import java.net.*;
 import java.io.*;
 
-//æœ‰å¯èƒ½å‡ºç°å¼‚å¸¸çš„åœ°æ–¹ä¸€å®šè¦æŠ›å‡ºå¼‚å¸¸ï¼Œå¹¶æœ€å¥½ç”¨try...catchï¼Œä¸å®œç”¨throws
+//ÓĞ¿ÉÄÜ³öÏÖÒì³£µÄµØ·½Ò»¶¨ÒªÅ×³öÒì³££¬²¢×îºÃÓÃtry...catch£¬²»ÒËÓÃthrows
 public class ChatServer{
 	public static void main(String[] args){
 		ServerSocket ss = null;
 		try{
-			ss = new ServerSocket(4567);//å®šä¹‰ServerSocketæ—¶å¿…é¡»æŒ‡å®šç«¯å£å·
+			ss = new ServerSocket(4567);//¶¨ÒåServerSocketÊ±±ØĞëÖ¸¶¨¶Ë¿ÚºÅ
 			System.out.println("Server Start Done!");
 		}catch(Exception e){
 			System.out.println("Server Start ERROR!");
@@ -14,30 +14,28 @@ public class ChatServer{
 		}
 		Socket s = null;
 		try{
-			s = ss.accept();//å»ºç«‹è¿æ¥æ˜¯Serverç«¯ä¹Ÿä¼šæœ‰ä¸ªSocketå®ç°ï¼Œç”¨æ¥å’ŒClientç«¯å¯¹åº”ä»è€Œè¿›è¡Œè¿æ¥
+			s = ss.accept();//½¨Á¢Á¬½ÓÊÇServer¶ËÒ²»áÓĞ¸öSocketÊµÏÖ£¬ÓÃÀ´ºÍClient¶Ë¶ÔÓ¦´Ó¶ø½øĞĞÁ¬½Ó
 			System.out.println("Connected!");
 		}catch(Exception e){
 			System.out.println("Server ERROR while connecting!");
 		}
 		try{
-			//ä»Clientç«¯è·å–æ•°æ®ï¼ŒBufferedReaderæ¥å—InputStreamReaderå‹æ•°æ®
+			//´ÓClient¶Ë»ñÈ¡Êı¾İ£¬BufferedReader½ÓÊÜInputStreamReaderĞÍÊı¾İ
 			BufferedReader reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
-			//å‘Clientç«¯å‘é€æ•°æ®
+			//ÏòClient¶Ë·¢ËÍÊı¾İ
 			PrintWriter output = new PrintWriter(s.getOutputStream());
-			//ä»é”®ç›˜è·å–è¾“å…¥ï¼ŒSystem.inæ˜¯InputStreamç±»å‹
+			//´Ó¼üÅÌ»ñÈ¡ÊäÈë£¬System.inÊÇInputStreamÀàĞÍ
 			BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-			String omsg = reader.readLine();//é˜»å¡å¼æ–¹æ³•
-			System.out.println("Client: " + omsg);
+			System.out.println("Client: " + reader.readLine());
 			String imsg = input.readLine();
 			while(!imsg.equals("Over")){
-				output.println(imsg);//println()æ–¹æ³•æŠŠå­—ç¬¦ä¸²æ‰“å°åˆ°PrintWriterï¼Œä¼ ç»™Client
-				output.flush();//æ•°æ®æ¸…ç©º
+				output.println(imsg);//println()·½·¨°Ñ×Ö·û´®´òÓ¡µ½PrintWriter£¬´«¸øClient
+				output.flush();//Êı¾İÇå¿Õ
 				System.out.println("Server: " + imsg);
-				System.out.println("Client: " + omsg);
+				System.out.println("Client: " + reader.readLine());
 				imsg = input.readLine();
-				omsg = reader.readLine();
 			}
-			//æ•°æ®ä¼ è¾“ç»“æŸåä¸€å®šè¦å…³é—­å„ç§è¿æ¥ï¼Œé€†åºä¾æ¬¡å…³é—­
+			//Êı¾İ´«Êä½áÊøºóÒ»¶¨Òª¹Ø±Õ¸÷ÖÖÁ¬½Ó£¬ÄæĞòÒÀ´Î¹Ø±Õ
 			input.close();
 			output.close();
 			reader.close();

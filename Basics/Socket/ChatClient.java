@@ -5,7 +5,7 @@ public class ChatClient{
 	public static void main(String[] args){
 		Socket s = null;
 		try{
-			s = new Socket("127.0.0.1", 4567);//瀹氫箟Socket鏃堕渶瑕佸埗瀹欼P鍜孭ort
+			s = new Socket("127.0.0.1", 4567);//定义Socket时需要制定IP和Port
 			System.out.println("Client Start Done!");
 		}catch(Exception e){
 			System.out.println("Client Start ERROR!");
