@@ -4,6 +4,6 @@ class Dog{
 	String color;
 	
 	void jump(){
-		System.out.println("Jump");
+		System.out.println(name + " " + age + " " + color);
 	}
 }
