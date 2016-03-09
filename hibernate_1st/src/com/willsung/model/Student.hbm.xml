@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.willsung.model">
+	<!-- 类和表名同名时，都可以<class name="Student" table="Student"></class> -->
+	<!-- 设定表和键的对应关系 -->
+	<class name="Student">
+	    <id name="id"></id>
+	    <property name="name"></property>
+	    <property name="age"></property>
+	</class>
+</hibernate-mapping>
